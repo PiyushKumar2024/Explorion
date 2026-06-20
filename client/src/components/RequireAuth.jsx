@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 // stopped and came to this component 
 // http://localhost:3000/campgrounds/new, the location object will contain { pathname: '/campgrounds/new', ... }.
 //useful for remembring the path
+
+
 const RequireAuth = ({ children }) => {
     const { isLoggedIn } = useSelector((state) => state.user);
     const location = useLocation();
@@ -18,7 +20,7 @@ const RequireAuth = ({ children }) => {
 
         //see the Navigate Tab
     }
-
+    //if logged in, render the children components
     return children;
 };
 

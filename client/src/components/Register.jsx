@@ -5,7 +5,7 @@
  */
 import '../css/Register.css'
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { login } from '../redux/featuresRedux/userSlice'
@@ -13,6 +13,9 @@ import { login } from '../redux/featuresRedux/userSlice'
 const Register = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/campgrounds';
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -43,7 +46,7 @@ const Register = () => {
                 localStorage.setItem('token', response.data.token); // Keep token for auth
                 localStorage.setItem('user', JSON.stringify(response.data.user)); // Store only the user object
                 dispatch(login(response.data));
-                navigate('/campgrounds');
+                navigate(from, { replace: true });
             } catch (err) {
                 //check how the error obj/json looks
                 setError(err.response?.data?.message || err.message);

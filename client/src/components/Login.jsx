@@ -11,9 +11,11 @@ import { login } from '../redux/featuresRedux/userSlice';
 import '../css/Landing.css';
 
 const Login = () => {
+
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+
     const [error, setError] = useState(location.state?.message || '');
     const [formData, setFormData] = useState({
         username: '',
@@ -27,22 +29,17 @@ const Login = () => {
     const handleSubmit = async (event) => {
         const form = event.currentTarget;
         event.preventDefault();
-        console.log("Form submitted with data:", formData); // Debug: Check if function runs
 
         if (form.checkValidity() === true) {
             try {
                 setIsLoading(true);
-                console.log("Sending request to server..."); // Debug: Check if axios starts
                 const response = await axios.post('/user/login', formData);
-                console.log("Server response:", response.data); // Debug: Check success
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user));
                 dispatch(login(response.data));
                 //replaces the current entry in the history stack
-                console.log("Navigating to:", from); // Debug: Check navigation
                 navigate(from, { replace: true });
             } catch (err) {
-                console.error("Login Error:", err); // Debug: Check for errors
                 setError(err.response?.data?.message || err.message);
                 setIsLoading(false);
             }
@@ -112,7 +109,7 @@ const Login = () => {
                                             </button>
                                         </div>
                                         <div className="text-center text-muted">
-                                            Don't have an account? <Link to="/user/register" className="text-success fw-semibold text-decoration-none">Register</Link>
+                                            Don't have an account? <Link to="/user/register" state={location.state} className="text-success fw-semibold text-decoration-none">Register</Link>
                                         </div>
                                     </form>
                                 </div>
