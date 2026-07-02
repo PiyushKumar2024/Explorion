@@ -54,9 +54,11 @@ export const isReviewAuthor = catchAsync(async (req, res, next) => {
  * Validation Middleware: Campground Payload
  * Validates incoming campground creation/update data against the Joi schema.
  */
-export const verifyCampgrounds = (req, res, next) => {
+export const verifyCampgrounds = async (req, res, next) => {
     const validation = campgroundsChecker.validate(req.body)
     if (validation.error) {
+        // Cleanup any uploaded images before rejecting — they're already on Cloudinary
+        if (req.cleanupImages) await req.cleanupImages();
         const message = validation.error.details.map(detail => detail.message).join(',')
         return res.status(400).json({ message })
     }
@@ -93,9 +95,11 @@ export const verifyReviews = (req, res, next) => {
  * Validation Middleware: User Registration/Update Payload
  * Validates incoming user data against the Joi schema and applies defaults.
  */
-export const verifyUser = (req, res, next) => {
+export const verifyUser = async (req, res, next) => {
     const validation = userValidity.validate(req.body);
     if (validation.error) {
+        // Cleanup any uploaded avatar before rejecting — it's already on Cloudinary
+        if (req.cleanupUserImage) await req.cleanupUserImage();
         const message = validation.error.details.map(detail => detail.message).join(',')
         return res.status(400).json({ message })
     }

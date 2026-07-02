@@ -20,11 +20,13 @@ export const registerUser = catchAsync(async (req, res, next) => {
 
     // Prevent users from self-assigning admin role during registration
     if (userData.role === 'admin') {
+        if (req.cleanupUserImage) await req.cleanupUserImage();
         return res.status(403).json({ message: 'Cannot register as admin' });
     }
 
     const existingUser = await User.findOne({ email: userData.email });
     if (existingUser) {
+        if (req.cleanupUserImage) await req.cleanupUserImage();
         return res.status(400).json({ message: 'User already exist' });
     }
     const user = new User({ ...userData, joined: new Date() });

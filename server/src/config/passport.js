@@ -30,6 +30,8 @@ const options = {
  * @param {Object} jwt_payload - The decoded JWT payload
  * @param {Function} done - Passport callback (err, user)
  */
+
+//done(error,user)
 const jwtVerify = async (jwt_payload, done) => {
     try {
         const user = await User.findById(jwt_payload.id);
@@ -49,3 +51,5 @@ const jwtVerify = async (jwt_payload, done) => {
 export default (passport) => {
     passport.use(new JwtStrategy(options, jwtVerify));
 };
+
+//done

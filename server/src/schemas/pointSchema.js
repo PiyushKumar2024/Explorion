@@ -12,3 +12,5 @@ export const pointSchema = new Schema({
         required: true
     }
 });
+
+//done

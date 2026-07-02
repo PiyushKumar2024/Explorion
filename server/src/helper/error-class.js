@@ -3,10 +3,12 @@
  * @description Custom error class for handling application-specific errors with HTTP status codes.
  */
 class appError extends Error {
-    constructor(message,status){
+    constructor(message, status) {
         super(message)
-        this.status=status
+        this.status = status
     }
 }
 
 export default appError;
+
+//done

@@ -58,6 +58,9 @@ export const validateImages = async (req, res, next) => {
                 });
             }
         }
+        // Attach cleanup function to req so downstream middlewares/controllers
+        // can delete uploaded images if their own validation fails
+        req.cleanupImages = cleanupFiles;
         next();
     } catch (error) {
         await cleanupFiles();

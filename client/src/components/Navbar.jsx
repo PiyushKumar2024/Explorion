@@ -4,14 +4,14 @@
  * Displays routing links, handles scroll effects, and manages user authentication state (login/logout).
  */
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/featuresRedux/userSlice';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {
 
     const { isLoggedIn, user } = useSelector((state) => state.user);
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [scrolled, setScrolled] = useState(false);
 
@@ -23,7 +23,7 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleLogout=()=>{
+    const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         dispatch(logout());
@@ -65,9 +65,9 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <Link to={`/user/${user?.id}`} className="me-2">
-                                    <img 
-                                        src={user?.image?.url || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} 
-                                        alt="Profile" 
+                                    <img
+                                        src={user?.image?.url || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'}
+                                        alt="Profile"
                                         className="rounded-circle"
                                         style={{ width: '38px', height: '38px', objectFit: 'cover', border: '2px solid var(--primary-400)' }}
                                     />
@@ -85,3 +85,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+//done

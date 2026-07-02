@@ -82,11 +82,15 @@ app.use('/api/places', placesRoutes);
  * Global Error Handling Middleware
  * Catches errors thrown in routes or passed via next(err)
  */
-app.use((err, req, res, next) => {
+app.use(async (err, req, res, next) => {
     // Default message and status code
     if (!err.message) err.message = 'Something went wrong';
     if (!err.status) err.status = 500;
     
+    // Cleanup any orphaned uploads from Cloudinary before sending the error response
+    if (req.cleanupUserImage) await req.cleanupUserImage();
+    if (req.cleanupImages) await req.cleanupImages();
+
     console.error('Global Error Handler:', err);
     
     // Return a JSON response containing error details (stack trace only in dev)

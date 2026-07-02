@@ -42,5 +42,7 @@ export const bookingSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    } //good practise can be utilised further
 });
+
+//done

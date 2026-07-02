@@ -1,28 +1,30 @@
 export const allAmenities = [
   // Essentials
-  "water", 
-  "toilet", 
-  "shower", 
-  "trash", 
+  "water",
+  "toilet",
+  "shower",
+  "trash",
   "campfire",
 
   // Comfort & Gear
-  "firewood", 
-  "picnic_table", 
-  "kitchen", 
-  "laundry", 
+  "firewood",
+  "picnic_table",
+  "kitchen",
+  "laundry",
   "parking",
 
   // Connectivity
-  "wifi", 
-  "signal", 
-  "electric", 
+  "wifi",
+  "signal",
+  "electric",
   "rv_dump",
 
   // Location & Vibes
-  "waterfront", 
-  "forest", 
-  "desert", 
-  "pets", 
+  "waterfront",
+  "forest",
+  "desert",
+  "pets",
   "family"
 ];
+
+//done

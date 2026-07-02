@@ -95,3 +95,5 @@ export const data = [
     { city: "Kakadu", state: "Northern Territory, Australia", latitude: -12.8436, longitude: 132.8827, country: "Australia" },
     { city: "Fiji Islands", state: "Western Division, Fiji", latitude: -17.7765, longitude: 177.9642, country: "Fiji" },
 ];
+
+//done

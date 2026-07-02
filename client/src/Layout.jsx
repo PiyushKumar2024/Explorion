@@ -4,13 +4,13 @@
  * Restores user session from localStorage on app load and displays Navbar/Footer.
  */
 import React, { useEffect } from "react";
-import {Outlet} from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { useDispatch } from 'react-redux';
 import { login } from './redux/featuresRedux/userSlice';
 
-function Layout(){
+function Layout() {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,13 +21,15 @@ function Layout(){
         }
     }, [dispatch]);
 
-    return(
+    return (
         <>
-            <Navbar/>
+            <Navbar />
             <Outlet />
-            <Footer/>
+            <Footer />
         </>
     )
 }
 
 export default Layout;
+
+//done

@@ -8,8 +8,10 @@
  * @returns {Function} A new Express middleware function
  */
 function wrap(fn) {
-    return function(req, res, next) {
+    return function (req, res, next) {
         fn(req, res, next).catch(next);
     }
 }
 export default wrap;
+
+//done

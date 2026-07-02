@@ -60,3 +60,5 @@ user.virtual('bookings', {
 //Important: unique:true is an index hint
 // not a validation rule. Mongoose won’t perform a synchronous uniqueness check
 // race conditions can still produce duplicates unless the DB index exists and you handle duplicate-key errors (E11000).
+
+//done

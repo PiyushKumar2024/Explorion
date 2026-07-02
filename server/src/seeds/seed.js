@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
 import Campground from '../models/campground.js'
 import User from '../models/user.js'
+import Review from '../models/review.js'
+import Booking from '../models/booking.js'
 import { data as cities } from './cities.js'
 import { places, descriptors } from './descriptions.js'
 import { allAmenities } from './amenity.js'
@@ -67,8 +69,10 @@ const campRuleSets = [
 const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const seed = async () => {
-    await Campground.deleteMany()
+    await Campground.deleteMany({})
     await User.deleteMany({})
+    await Review.deleteMany({})
+    await Booking.deleteMany({})
 
     const user = new User({
         email: 'piyush@gmail.com',
@@ -78,7 +82,7 @@ const seed = async () => {
         phoneNum: '1234567890',
         role: 'host'
     })
-    const registeredUser = await User.register(user, 'Piyush')
+    const registeredUser = await User.register(user, 'Piyush') //added by passport local mongoose the sec arg is password
 
     // Create a second host for variety
     const user2 = new User({
@@ -91,6 +95,7 @@ const seed = async () => {
     })
     const registeredUser2 = await User.register(user2, 'Explorer')
 
+    //the absence of images is handled on frontend using a fallback one
     const hosts = [registeredUser, registeredUser2];
 
     for (let i = 0; i < cities.length; i++) {
@@ -99,6 +104,8 @@ const seed = async () => {
 
         // Pick 3-5 unique amenities
         const numAmenities = 3 + Math.floor(Math.random() * 3);
+        //spread to make a copy then in sort pass a func to generate positives
+        //-0.5 so there will be some negative and will be ignored
         const shuffled = [...allAmenities].sort(() => Math.random() - 0.5);
         const selectedAmenities = shuffled.slice(0, numAmenities);
 
@@ -136,3 +143,5 @@ seed()
     .catch((err) => {
         console.log(err)
     })
+
+//done

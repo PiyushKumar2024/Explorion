@@ -93,6 +93,7 @@ export const loadCampgroundCoordinates = catchAsync(async (req, res) => {
 export const createNewCampground = catchAsync(async (req, res) => {
     // Check if user is a host or host+camper - campers cannot create campgrounds
     if (req.user.role !== 'host' && req.user.role !== 'host+camper' && req.user.role !== 'admin') {
+        if (req.cleanupImages) await req.cleanupImages();
         return res.status(403).json({ message: 'Only hosts can create campgrounds' });
     }
 

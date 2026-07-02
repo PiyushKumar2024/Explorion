@@ -11,7 +11,7 @@ import './css/Root.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { RouterProvider,createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './Layout.jsx';
 import Landing from './components/Landing.jsx';
 import Home from './components/Home.jsx'
@@ -36,79 +36,79 @@ axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
  * React Router Configuration
  * Maps URL paths to React components, wrapping protected routes in <RequireAuth>
  */
-const router=createBrowserRouter([
+const router = createBrowserRouter([
   {
-    path:'/',
-    element:<Layout/>,
-    children:[
+    path: '/',
+    element: <Layout />,
+    children: [
       {
-        path:'',
-        element:<Landing/>
+        path: '',
+        element: <Landing />
       }
     ]
   },
   {
-    path:'/campgrounds',
-    element:<Layout/>,
-    children:[
+    path: '/campgrounds',
+    element: <Layout />,
+    children: [
       {
-        path:'',
-        element:<Home/>
+        path: '',
+        element: <Home />
       },
       {
         // Protected route: Create a new campground
-        path:'new',
-        element:<RequireAuth><NewCampForm/></RequireAuth>
+        path: 'new',
+        element: <RequireAuth><NewCampForm /></RequireAuth>
       },
       {
-        path:'edit/:id',
-        element:<RequireAuth><UpdateCamp/></RequireAuth>
+        path: 'edit/:id',
+        element: <RequireAuth><UpdateCamp /></RequireAuth>
       },
       {
-        path:':id',
-        element:<Campground/>
+        path: ':id',
+        element: <Campground />
       }
     ]
   },
   {
-    path:'/user',
-    element:<Layout/>,
-    children:[
+    path: '/user',
+    element: <Layout />,
+    children: [
       {
-        path:'login',
-        element:<Login/>
+        path: 'login',
+        element: <Login />
       },
       {
-        path:'register',
-        element:<Register/>
+        path: 'register',
+        element: <Register />
       },
       {
-        path:':id',
-        element:<RequireAuth><UserProfile/></RequireAuth>
+        path: ':id',
+        element: <RequireAuth><UserProfile /></RequireAuth>
       }
     ]
   },
   {
     path: '/trip-planner',
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
         path: '',
-        element: <RequireAuth><TripPlanner/></RequireAuth>
+        element: <RequireAuth><TripPlanner /></RequireAuth>
       }
     ]
   },
   {
-    path:'/booking',
-    element:<Layout/>,
-    children:[
+    path: '/booking',
+    element: <Layout />,
+    children: [
       {
-        path:'success',
-        element:<RequireAuth><BookingSuccess/></RequireAuth>
+        path: 'success',
+        element: <RequireAuth><BookingSuccess /></RequireAuth>
       },
       {
-        path:'cancel',
-        element:<BookingCancel/>
+        path: 'cancel',
+        element: <BookingCancel />
       }
     ]
   }
@@ -117,7 +117,9 @@ const router=createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </Provider>
   </StrictMode>,
 )
+
+//done

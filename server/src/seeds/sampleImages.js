@@ -43,3 +43,5 @@ export const sampleImages = [
     { url: 'https://images.unsplash.com/photo-1494783367193-149034c48e58?w=800&q=80', imageId: 'seed/northern-lights' },
     { url: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80', imageId: 'seed/mountain-lake-aerial' },
 ];
+
+//done
